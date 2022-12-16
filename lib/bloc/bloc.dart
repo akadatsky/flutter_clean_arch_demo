@@ -3,10 +3,13 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:giphy_sample/bloc/events.dart';
 import 'package:giphy_sample/bloc/states.dart';
-import 'package:giphy_sample/data/data_source.dart';
+import 'package:data/data.dart';
 
 class ListBloc extends Bloc<ListEvent, ListState> {
-  ListBloc() : super(ListInitState()) {
+
+  final IGifRepository gifRepository;
+
+  ListBloc(this.gifRepository) : super(ListInitState()) {
     on<UpdateListEvent>(onListEvent);
   }
 
@@ -14,7 +17,7 @@ class ListBloc extends Bloc<ListEvent, ListState> {
     UpdateListEvent event,
     Emitter<ListState> emit,
   ) async {
-    final result = await DataSource().getData(event.request);
+    final result = await gifRepository.getGifs(event.request);
     emit(ListLoadedState(result));
   }
 }

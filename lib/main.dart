@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:giphy_sample/bloc/bloc.dart';
-import 'package:giphy_sample/list_screen.dart';
+import 'package:giphy_sample/di/di.dart';
+import 'package:giphy_sample/ui/list_screen.dart';
+import 'package:injector/injector.dart' show Injector;
 
-void main() {
-  runApp(const MyApp());
+Future<Widget> main() async {
+  await Di().setup();
+  Widget widget = const MyApp();
+  runApp(widget);
+  return widget;
 }
 
 class MyApp extends StatelessWidget {
@@ -39,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: BlocProvider(
-        create: (context) => ListBloc(),
+        create: (context) => Injector.appInstance.get<ListBloc>(),
         child: const ListScreen(),
       ),
     );

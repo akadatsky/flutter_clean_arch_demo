@@ -1,11 +1,11 @@
-class ApiResponse {
+class GifResponse {
   List<Data>? data;
   Pagination? pagination;
   Meta? meta;
 
-  ApiResponse({this.data, this.pagination, this.meta});
+  GifResponse({this.data, this.pagination, this.meta});
 
-  ApiResponse.fromJson(Map<String, dynamic> json) {
+  GifResponse.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {

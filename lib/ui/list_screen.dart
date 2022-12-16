@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:giphy_sample/api/api_response.dart';
 import 'package:giphy_sample/bloc/bloc.dart';
 import 'package:giphy_sample/bloc/events.dart';
 import 'package:giphy_sample/bloc/states.dart';
+import 'package:data/data.dart';
 
 class ListScreen extends StatefulWidget {
   const ListScreen({super.key});
@@ -14,7 +14,7 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
-  var items = <Data>[];
+  var items = <Gif>[];
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _ListScreenState extends State<ListScreen> {
                   itemCount: items.length,
                   itemBuilder: (context, index) => Card(
                     child: CachedNetworkImage(
-                      imageUrl: items[index].images?.previewGif?.url ?? '',
+                      imageUrl: items[index].url,
                       placeholder: (BuildContext context, String url) =>
                           const Placeholder(
                         fallbackWidth: 320,

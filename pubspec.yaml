@@ -9,12 +9,22 @@ environment:
   sdk: '>=2.18.2 <3.0.0'
 
 dependencies:
+  data:
+    path: data
+
+  local:
+    path: local
+
+  remote:
+    path: remote
+
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
   cached_network_image: ^3.2.3
   flutter_bloc: ^8.1.1
   dio: ^4.0.6
+  injector: 2.0.0
 
 dev_dependencies:
   flutter_test:
